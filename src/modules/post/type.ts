@@ -1,5 +1,5 @@
 export interface IPost {
-    id: string
+    _id: string
     title: string
     author: string
     content: string
@@ -7,6 +7,6 @@ export interface IPost {
     updatedAt?: Date
 }
 
-export type ICreatePostParams = Omit<IPost, 'id' | 'createdAt' | 'updatedAt'>
+export type ICreatePostParams = Omit<IPost, '_id' | 'createdAt' | 'updatedAt'>
 
-export type IUpdatePostParams = { id: string } & Partial<Omit<IPost, 'id' | 'createdAt' | 'updatedAt'>>
+export type IUpdatePostParams = { _id: string } & Partial<Omit<IPost, '_id' | 'createdAt' | 'updatedAt'>>

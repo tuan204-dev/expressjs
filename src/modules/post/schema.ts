@@ -12,7 +12,7 @@ export const getPostsSchema = Joi.object({
 })
 
 export const updatePostSchema = Joi.object({
-    id: Joi.string().required(),
+    _id: Joi.string().required(),
     title: Joi.string().min(3).max(100).optional(),
     author: Joi.string().optional(),
     content: Joi.string().min(10).max(5000).optional()

@@ -1,13 +1,10 @@
 import express from 'express'
-import * as admin from 'firebase-admin'
 import postRoutes from './modules/post/routes'
-import { firebaseAdminConfig } from './config/firebase'
+import connectMongoDB from './config/mongodb'
 
 const PORT = 8080
 
-admin.initializeApp({
-    credential: admin.credential.cert(firebaseAdminConfig as admin.ServiceAccount)
-})
+connectMongoDB()
 
 const app = express()
 app.use(express.json())
