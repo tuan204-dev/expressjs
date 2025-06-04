@@ -5,11 +5,13 @@ dotenv.config()
 
 const auth = {
     type: 'OAuth2',
-    user: 'contact.tuandang@gmail.com',
+    user: 'anhtuan2004.learning@gmail.com',
     clientId: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     refreshToken: process.env.GOOGLE_REFRESH_TOKEN
 }
+
+console.log('auth', auth)
 
 const transporter = nodemailer.createTransport({
     // @ts-ignore

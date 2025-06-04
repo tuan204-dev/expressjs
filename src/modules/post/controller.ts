@@ -4,6 +4,7 @@ import { getResponse } from '~/utils/common'
 import { ICreatePost } from './type'
 import omit from 'lodash/omit'
 import Comment from '~/db/models/commentModel'
+import User from '~/db/models/userModel'
 
 export const createPost = async (req: Request<unknown, unknown, ICreatePost>, res: Response) => {
     try {
@@ -174,21 +175,37 @@ export const likePost = async (req: Request, res: Response) => {
 
         const post = await Post.findById(postId)
 
+        const user = await User.findById(userId)
+
+        if (!user) {
+            res.status(404).json(
+                getResponse({
+                    message: 'User not found'
+                })
+            )
+            return
+        }
+
         if (!post) {
             res.status(404).json(
                 getResponse({
                     message: 'Post not found'
                 })
             )
+            return
         }
 
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        const alreadyLiked = post?.likes?.includes(userId)
+        const alreadyLiked = post?.likes?.includes(userId) || user?.likedPosts?.includes(postId)
 
         if (!alreadyLiked) {
             await post?.updateOne({
                 $push: { likes: userId }
+            })
+
+            await user?.updateOne({
+                $push: { likedPosts: postId }
             })
         }
 
@@ -217,6 +234,8 @@ export const unLikePost = async (req: Request, res: Response) => {
 
         const post = await Post.findById(postId)
 
+        const user = await User.findById(userId)
+
         if (!post) {
             res.status(404).json(
                 getResponse({
@@ -226,13 +245,26 @@ export const unLikePost = async (req: Request, res: Response) => {
             return
         }
 
+        if (!user) {
+            res.status(404).json(
+                getResponse({
+                    message: 'User not found'
+                })
+            )
+            return
+        }
+
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        const alreadyLiked = post?.likes?.includes(userId)
+        const alreadyLiked = post?.likes?.includes(userId) || user?.likedPosts?.includes(postId)
 
         if (alreadyLiked) {
             await post?.updateOne({
                 $pull: { likes: userId }
+            })
+
+            await user?.updateOne({
+                $pull: { likedPosts: postId }
             })
         }
 

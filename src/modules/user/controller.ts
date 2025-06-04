@@ -177,3 +177,64 @@ export const getAllCommentByUserId = async (req: Request, res: Response) => {
         )
     }
 }
+
+// export const createDemoUsers = async (req: Request, res: Response) => {
+//     const users = [
+//         {
+//             email: 'mail1@gmail.com',
+//             loginName: 'account1',
+//             password: '12345678',
+//             firstName: 'John',
+//             lastName: 'Doe',
+//             location: 'New York',
+//             description: 'User 1 description',
+//             occupation: 'Engineer'
+//         },
+//         {
+//             email: 'mail2@gmail.com',
+//             loginName: 'account2',
+//             password: '12345678',
+//             firstName: 'Jane',
+//             lastName: 'Smith',
+//             location: 'San Francisco',
+//             description: 'User 2 description',
+//             occupation: 'Designer'
+//         },
+//         {
+//             email: 'mail3@gmail.com',
+//             loginName: 'account3',
+//             password: '12345678',
+//             firstName: 'Alice',
+//             lastName: 'Johnson',
+//             location: '',
+//             description: '',
+//             occupation: ''
+//         },
+//         {
+//             email: 'mail4@gmail.com',
+//             loginName: 'account4',
+//             password: '12345678',
+//             firstName: 'Bob',
+//             lastName: 'Brown',
+//             location: 'Chicago',
+//             description: 'User 4 description',
+//             occupation: 'Manager'
+//         },
+//         {
+//             email: 'mail5@gmail.com',
+//             loginName: 'account5',
+//             password: '12345678',
+//             firstName: 'Emily',
+//             lastName: 'Davis',
+//             location: 'Seattle',
+//             description: '',
+//             occupation: 'Developer'
+//         }
+//     ]
+
+//     for (const userData of users) {
+//         await User.create(userData)
+//     }
+
+//     res.status(200).json("OKE")
+// }

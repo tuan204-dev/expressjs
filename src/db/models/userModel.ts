@@ -13,6 +13,7 @@ export interface IUser extends Document {
     location?: string
     description?: string
     occupation?: string
+    likedPosts?: mongoose.Types.ObjectId[]
     createdAt: Date
     updatedAt: Date
 
@@ -77,6 +78,11 @@ const userSchema = new Schema<IUser>(
             trim: true,
             maxlength: 100,
             default: ''
+        },
+        likedPosts: {
+            type: [Schema.Types.ObjectId],
+            ref: 'Post',
+            default: []
         }
     },
     {
