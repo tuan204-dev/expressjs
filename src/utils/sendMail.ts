@@ -11,8 +11,6 @@ const auth = {
     refreshToken: process.env.GOOGLE_REFRESH_TOKEN
 }
 
-console.log('auth', auth)
-
 const transporter = nodemailer.createTransport({
     // @ts-ignore
     service: 'gmail',
